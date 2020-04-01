@@ -35,8 +35,12 @@ server {
     gzip on;
     gzip_types image/svg+xml;
     gzip_vary on;
+    
+    rewrite ^/ark:/39333/ncg(.*)$ /$1 last;
 
     location / {
+        rewrite ^/ark:/39333/ncg/(.*)$ /$1 redirect;
+
         root {{ www_root }};
         try_files $uri $uri/index.html $uri.html =404;
     }
